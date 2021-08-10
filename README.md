@@ -3,5 +3,7 @@
 ### 1. make it executable 
   ``chmod u+x set_env.sh``
  
-### 2. run it (as sudo ❗)
-  ``sudo ./set_env.sh``
+### 2. run it (as sudo ❗) 
+Be careful to replace the variable $CURRENT_USER with the right value
+
+  ``sudo ./set_env.sh $CURRENT_USER``
