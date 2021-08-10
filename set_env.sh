@@ -3,7 +3,7 @@
 VENV=.venv/
 FURY=/usr/local/bin/fury
 
-
+### PYTHON VIRTUALENV CONFIGURATION ###
 if [[ -d "$VENV" ]]; then
 	echo "Entering into your virtualenv"
 	source .venv/bin/activate
@@ -15,6 +15,7 @@ else
 	source .venv/bin/activate
 fi
 
+### FURY CONFIGURATION ###
 if [[ ! -L "$FURY" ]]; then
 	echo "Installing fury cli"
 	if pip3 install -i https://pypi.artifacts.furycloud.io/ furycli --upgrade; then
@@ -27,6 +28,11 @@ else
 	echo "furycli already installed!"
 fi
 
+### FURY-CLI ENV VARIABLES CONFIGURATION ###
+export MELI_USER=$1
+export SSL_CERT_DIR=/etc/ssl/certs
+
+### DOCKER CONFIGURATION ###
 if systemctl is-active --quiet docker; then
 	echo "Docker is running!"
 else
@@ -34,6 +40,7 @@ else
 fi
 
 usermod -aG docker $USER
+
 
 echo "[info] Ctrl+d OR write exit to deactivate the virtualenv"
 bash -c ". .venv/bin/activate; exec /usr/bin/env bash"
